@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Информация о пользователе</title>
+</head>
+<body>
+    <h1>Информация о пользователе</h1>
+    <p th:text="|Привет, ${user.name}!|" />
+    <p th:text="|Привет, ${user.email}!|" />
+
+    <ul th:object="${user}">
+        <li>Имя: <span th:text="*{name}"></span></li>
+        <li>Адрес: <span th:text="*{email}"></span></li>
+    </ul>
+
+    <div th:inline="text">
+    <h1>Значение в строке. Привет [[${user.name}]]!</h1>
+    </div>
+
+
+</body>
+</html>
