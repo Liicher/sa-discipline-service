@@ -1,31 +1,27 @@
 package ru.nnov.nntu.vst.demo.dto;
 
-import ru.nnov.nntu.vst.demo.models.AssessmentType;
-import ru.nnov.nntu.vst.demo.models.Skill;
-import ru.nnov.nntu.vst.demo.models.WorkType;
-
 import java.util.Set;
 
 public class DisciplineDTO {
 	private Long id;
 	private String name;
 	private String description;
-	private Set<Skill> requiredSkills;
-	private Set<Skill> outcomes;
-	private Set<WorkType> workTypes;
-	private AssessmentType assessment;
+	private Set<Long> requiredSkillIds;
+	private Set<Long> outcomeIds;
+	private Set<Long> workTypeIds;
+	private Long assessmentTypeId;
 
 	public DisciplineDTO() {
 	}
 
-	public DisciplineDTO(Long id, String name, String description, Set<Skill> requiredSkills, Set<Skill> outcomes, Set<WorkType> workTypes, AssessmentType assessment) {
+	public DisciplineDTO(Long id, String name, String description, Set<Long> requiredSkillIds, Set<Long> outcomeIds, Set<Long> workTypeIds, Long assessmentTypeId) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.requiredSkills = requiredSkills;
-		this.outcomes = outcomes;
-		this.workTypes = workTypes;
-		this.assessment = assessment;
+		this.requiredSkillIds = requiredSkillIds;
+		this.outcomeIds = outcomeIds;
+		this.workTypeIds = workTypeIds;
+		this.assessmentTypeId = assessmentTypeId;
 	}
 
 	public Long getId() {
@@ -52,35 +48,35 @@ public class DisciplineDTO {
 		this.description = description;
 	}
 
-	public Set<Skill> getRequiredSkills() {
-		return requiredSkills;
+	public Set<Long> getRequiredSkillIds() {
+		return requiredSkillIds;
 	}
 
-	public void setRequiredSkills(Set<Skill> requiredSkills) {
-		this.requiredSkills = requiredSkills;
+	public void setRequiredSkillIds(Set<Long> requiredSkillIds) {
+		this.requiredSkillIds = requiredSkillIds;
 	}
 
-	public Set<Skill> getOutcomes() {
-		return outcomes;
+	public Set<Long> getOutcomeIds() {
+		return outcomeIds;
 	}
 
-	public void setOutcomes(Set<Skill> outcomes) {
-		this.outcomes = outcomes;
+	public void setOutcomeIds(Set<Long> outcomeIds) {
+		this.outcomeIds = outcomeIds;
 	}
 
-	public Set<WorkType> getWorkTypes() {
-		return workTypes;
+	public Set<Long> getWorkTypeIds() {
+		return workTypeIds;
 	}
 
-	public void setWorkTypes(Set<WorkType> workTypes) {
-		this.workTypes = workTypes;
+	public void setWorkTypeIds(Set<Long> workTypeIds) {
+		this.workTypeIds = workTypeIds;
 	}
 
-	public AssessmentType getAssessment() {
-		return assessment;
+	public Long getAssessmentTypeId() {
+		return assessmentTypeId;
 	}
 
-	public void setAssessment(AssessmentType assessment) {
-		this.assessment = assessment;
+	public void setAssessmentTypeId(Long assessmentTypeId) {
+		this.assessmentTypeId = assessmentTypeId;
 	}
 }
