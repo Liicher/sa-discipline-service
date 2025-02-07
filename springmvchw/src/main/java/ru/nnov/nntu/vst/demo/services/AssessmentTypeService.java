@@ -2,7 +2,6 @@ package ru.nnov.nntu.vst.demo.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.nnov.nntu.vst.demo.dto.AssessmentTypeDTO;
 import ru.nnov.nntu.vst.demo.models.AssessmentType;
 import ru.nnov.nntu.vst.demo.repository.AssessmentTypeRepository;
 
@@ -13,9 +12,7 @@ public class AssessmentTypeService {
 	@Autowired
 	private AssessmentTypeRepository assessmentTypeRepository;
 
-	public AssessmentType createAssessmentTypeFromDTO(AssessmentTypeDTO assessmentTypeDTO) {
-		AssessmentType assessmentType = new AssessmentType();
-		assessmentType.setName(assessmentTypeDTO.getName());
+	public AssessmentType createAssessmentType(AssessmentType assessmentType) {
 		return assessmentTypeRepository.save(assessmentType);
 	}
 

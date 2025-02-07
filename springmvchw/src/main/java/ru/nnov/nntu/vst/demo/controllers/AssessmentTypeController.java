@@ -1,10 +1,8 @@
 package ru.nnov.nntu.vst.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.nnov.nntu.vst.demo.dto.AssessmentTypeDTO;
 import ru.nnov.nntu.vst.demo.models.AssessmentType;
 import ru.nnov.nntu.vst.demo.services.AssessmentTypeService;
 
@@ -17,9 +15,9 @@ public class AssessmentTypeController {
 	private AssessmentTypeService assessmentTypeService;
 
 	@PostMapping
-	public ResponseEntity<AssessmentType> createDisciplineFromDTO(@RequestBody AssessmentTypeDTO assessmentTypeDTO) {
-		AssessmentType createdAssessmentType = assessmentTypeService.createAssessmentTypeFromDTO(assessmentTypeDTO);
-		return new ResponseEntity<>(createdAssessmentType, HttpStatus.CREATED);
+	public ResponseEntity<AssessmentType> createAssessmentType(@RequestBody AssessmentType assessmentType) {
+		AssessmentType createdAssessmentType = assessmentTypeService.createAssessmentType(assessmentType);
+		return ResponseEntity.ok(createdAssessmentType);
 	}
 
 	@GetMapping("/{id}")
