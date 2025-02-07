@@ -21,14 +21,18 @@ public class SkillController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Skill> getSkillById(@PathVariable Long id) {
-		return skillService.getSkillById(id)
-				.map(ResponseEntity::ok)
-				.orElseGet(() -> ResponseEntity.notFound().build());
+		try {
+			Skill skill = skillService.getSkillById(id);
+			return ResponseEntity.ok(skill);
+		} catch (RuntimeException e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 
 	@PostMapping
-	public Skill createSkill(@RequestBody Skill skill) {
-		return skillService.createSkill(skill);
+	public ResponseEntity<Skill> createSkill(@RequestBody Skill skill) {
+		Skill createdSkill = skillService.createSkill(skill);
+		return ResponseEntity.ok(createdSkill);
 	}
 
 	@PutMapping("/{id}")
@@ -42,8 +46,8 @@ public class SkillController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteSkill(@PathVariable Long id) {
+	public ResponseEntity<String> deleteSkill(@PathVariable Long id) {
 		skillService.deleteSkill(id);
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.ok("Навык с ID = " + id + " успешно удален");
 	}
 }

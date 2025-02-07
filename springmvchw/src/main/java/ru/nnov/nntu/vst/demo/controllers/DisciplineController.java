@@ -23,7 +23,7 @@ public class DisciplineController {
 	}*/
 
 	@PostMapping
-	public ResponseEntity<Discipline> createDisciplineFromDTO(@RequestBody DisciplineDTO disciplineDTO) {
+	public ResponseEntity<Discipline> createDiscipline(@RequestBody DisciplineDTO disciplineDTO) {
 		Discipline createdDiscipline = disciplineService.createDisciplineFromDTO(disciplineDTO);
 		return new ResponseEntity<>(createdDiscipline, HttpStatus.CREATED);
 	}

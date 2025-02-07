@@ -6,7 +6,6 @@ import ru.nnov.nntu.vst.demo.models.Skill;
 import ru.nnov.nntu.vst.demo.repository.SkillRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SkillService {
@@ -17,8 +16,9 @@ public class SkillService {
 		return skillRepository.findAll();
 	}
 
-	public Optional<Skill> getSkillById(Long id) {
-		return skillRepository.findById(id);
+	public Skill getSkillById(Long id) {
+		return skillRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("WorkType с ID = " + id + " не найдена"));
 	}
 
 	public Skill createSkill(Skill skill) {

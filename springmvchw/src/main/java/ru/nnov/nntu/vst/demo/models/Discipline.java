@@ -1,26 +1,20 @@
 package ru.nnov.nntu.vst.demo.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "disciplines")
-@Getter
-@Setter
 public class Discipline {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	@Column(name = "name", nullable = false)
-	private String name; // Название дисциплины
-
+	private String name;
 	@Column(name = "description")
-	private String description; // Описание дисциплины
+	private String description;
 
 	// Связь с таблицей Discipline_Requirements (требуемые навыки)
 	@ManyToMany
@@ -49,15 +43,10 @@ public class Discipline {
 	)
 	private Set<WorkType> workTypes = new HashSet<>();
 
-	// Связь с таблицей Discipline_Assessments (типы контроля)
-	@ManyToMany
-	@JoinTable(
-			name = "discipline_assessments",
-			joinColumns = @JoinColumn(name = "discipline_id"),
-			inverseJoinColumns = @JoinColumn(name = "assessment_type_id")
-	)
-
-	private Set<AssessmentType> assessments = new HashSet<>();
+	// Связь с таблицей Discipline_Assessments (тип контроля)
+	@ManyToOne
+	@JoinColumn(name = "assessment_type_id")
+	private AssessmentType assessment;
 
 	public Discipline() {}
 
@@ -66,12 +55,72 @@ public class Discipline {
 		this.description = description;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Set<Skill> getRequiredSkills() {
+		return requiredSkills;
+	}
+
+	public void setRequiredSkills(Set<Skill> requiredSkills) {
+		this.requiredSkills = requiredSkills;
+	}
+
+	public Set<Skill> getOutcomes() {
+		return outcomes;
+	}
+
+	public void setOutcomes(Set<Skill> outcomes) {
+		this.outcomes = outcomes;
+	}
+
+	public Set<WorkType> getWorkTypes() {
+		return workTypes;
+	}
+
+	public void setWorkTypes(Set<WorkType> workTypes) {
+		this.workTypes = workTypes;
+	}
+
+	public AssessmentType getAssessment() {
+		return assessment;
+	}
+
+	public void setAssessment(AssessmentType assessment) {
+		this.assessment = assessment;
+	}
+
 	@Override
 	public String toString() {
 		return "Discipline{" +
 				"id=" + id +
 				", name='" + name + '\'' +
 				", description='" + description + '\'' +
+				", requiredSkills=" + requiredSkills +
+				", outcomes=" + outcomes +
+				", workTypes=" + workTypes +
+				", assessment=" + assessment +
 				'}';
 	}
 }
